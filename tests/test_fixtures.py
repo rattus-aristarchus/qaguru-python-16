@@ -10,8 +10,12 @@ def test_github_desktop(browser_desktop):
     page.open()
     page.sign_in_desktop()
 
+    page.should_show_auth_form()
+
 
 def test_github_mobile(browser_mobile):
     page = GitHubHomePage()
     page.open()
     page.sign_in_mobile()
+
+    page.should_show_auth_form()
