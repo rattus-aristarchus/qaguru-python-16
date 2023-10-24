@@ -47,3 +47,12 @@ def browser_setup(request):
     yield
 
     browser.quit()
+
+
+only_desktop = pytest.mark.parametrize('browser_setup',
+                                       DESKTOP_RESOLUTIONS,
+                                       indirect=True)
+
+only_mobile = pytest.mark.parametrize('browser_setup',
+                                      MOBILE_RESOLUTIONS,
+                                      indirect=True)

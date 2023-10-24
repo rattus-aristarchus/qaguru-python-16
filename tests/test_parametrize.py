@@ -1,17 +1,23 @@
 """
 Переопределите параметр с помощью indirect параметризации на уровне теста
 """
-import pytest
+from tests.conftest import only_desktop, only_mobile
+from tests.models.github_home_page import GitHubHomePage
 
 
-@pytest.fixture()
-def browser():
-    pass
+@only_desktop
+def test_github_desktop(browser_setup):
+    page = GitHubHomePage()
+    page.open()
+    page.sign_in_desktop()
+
+    page.should_show_auth_form()
 
 
-def test_github_desktop(browser):
-    pass
+@only_mobile
+def test_github_mobile(browser_setup):
+    page = GitHubHomePage()
+    page.open()
+    page.sign_in_mobile()
 
-
-def test_github_mobile(browser):
-    pass
+    page.should_show_auth_form()
